@@ -13,9 +13,14 @@
 
   &.current {
     border: 2px solid #6699ffaa;
+    background-color: #6699ff5f;
+  }
+
+  &.meeting {
+    background-color: #c6d3ea9e;
   }
 
   &:hover {
-    background-color: #6699ff5f;
+    background-color: #619bfe1b;
   }
 }
