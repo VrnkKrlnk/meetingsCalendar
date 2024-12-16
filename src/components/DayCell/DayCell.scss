@@ -1,0 +1,16 @@
+.cell {
+  width: calc(100% / 8);
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+
+  &.none {
+    visibility: hidden;
+  }
+
+  &:hover {
+    background-color: #6699ff5f;
+  }
+}
