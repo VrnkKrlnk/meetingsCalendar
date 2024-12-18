@@ -74,6 +74,12 @@ function Calendar() {
       location: "Зал 3, Суд Московского района",
     },
     {
+      date: "2024-12-20",
+      time: "12:00",
+      title: "Дело №58321",
+      location: "Зал 4, Суд Советского района",
+    },
+    {
       date: "2025-01-18",
       time: "12:00",
       title: "Дело №58321",
@@ -82,7 +88,7 @@ function Calendar() {
   ];
 
   function fillData(day) {
-    return data.find((val) => {
+    return data.filter((val) => {
       let valDate = new Date(val.date);
       return (
         valDate.getFullYear() === currentDate.getFullYear() &&
