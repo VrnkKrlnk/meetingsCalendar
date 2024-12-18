@@ -61,33 +61,6 @@ function Calendar() {
     setCurrentDate(newDate);
   };
 
-  // let data = [
-  //   {
-  //     date: "2024-12-4",
-  //     time: "14:00",
-  //     title: "Дело №12345",
-  //     location: "Зал 1, Суд Ленинского района",
-  //   },
-  //   {
-  //     date: "2024-12-20",
-  //     time: "10:00",
-  //     title: "Дело №54321",
-  //     location: "Зал 3, Суд Московского района",
-  //   },
-  //   {
-  //     date: "2024-12-20",
-  //     time: "12:00",
-  //     title: "Дело №58321",
-  //     location: "Зал 4, Суд Советского района",
-  //   },
-  //   {
-  //     date: "2025-01-18",
-  //     time: "12:00",
-  //     title: "Дело №58321",
-  //     location: "Зал 4, Суд Советского района",
-  //   },
-  // ];
-
   const fetchData = async () => {
     try {
       let resp = await fetch("/events.json");

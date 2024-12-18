@@ -1,10 +1,10 @@
 .cell {
-  width: calc(100% / 8);
-  height: 35px;
+  width: calc(100% / 7);
+  min-height: 35px;
+  height: calc(100% - 90%);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 2px;
   border: 2px solid transparent;
   position: relative;
 
@@ -28,8 +28,8 @@
 
   .tooltip {
     position: absolute;
-    bottom: 25px;
-    left: 20px;
+    bottom: calc(100% - 30%);
+    left: calc(100% - 55%);
     visibility: hidden;
     z-index: 1;
     width: 150px;
