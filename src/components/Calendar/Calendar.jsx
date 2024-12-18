@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Calendar.scss";
 import DayCell from "../DayCell/DayCell.jsx";
 
 function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [data, setData] = useState([]);
 
   let dayInMonth = new Date(
     currentDate.getFullYear(),
@@ -60,32 +61,47 @@ function Calendar() {
     setCurrentDate(newDate);
   };
 
-  let data = [
-    {
-      date: "2024-12-4",
-      time: "14:00",
-      title: "Дело №12345",
-      location: "Зал 1, Суд Ленинского района",
-    },
-    {
-      date: "2024-12-20",
-      time: "10:00",
-      title: "Дело №54321",
-      location: "Зал 3, Суд Московского района",
-    },
-    {
-      date: "2024-12-20",
-      time: "12:00",
-      title: "Дело №58321",
-      location: "Зал 4, Суд Советского района",
-    },
-    {
-      date: "2025-01-18",
-      time: "12:00",
-      title: "Дело №58321",
-      location: "Зал 4, Суд Советского района",
-    },
-  ];
+  // let data = [
+  //   {
+  //     date: "2024-12-4",
+  //     time: "14:00",
+  //     title: "Дело №12345",
+  //     location: "Зал 1, Суд Ленинского района",
+  //   },
+  //   {
+  //     date: "2024-12-20",
+  //     time: "10:00",
+  //     title: "Дело №54321",
+  //     location: "Зал 3, Суд Московского района",
+  //   },
+  //   {
+  //     date: "2024-12-20",
+  //     time: "12:00",
+  //     title: "Дело №58321",
+  //     location: "Зал 4, Суд Советского района",
+  //   },
+  //   {
+  //     date: "2025-01-18",
+  //     time: "12:00",
+  //     title: "Дело №58321",
+  //     location: "Зал 4, Суд Советского района",
+  //   },
+  // ];
+
+  const fetchData = async () => {
+    try {
+      let resp = await fetch("/events.json");
+      if (!resp.ok) {
+        throw new Error("Response was not ok");
+      }
+      let res = await resp.json();
+      setData(res);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  useEffect(() => fetchData, []);
 
   function fillData(day) {
     return data.filter((val) => {
