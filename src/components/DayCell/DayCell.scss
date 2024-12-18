@@ -18,6 +18,11 @@
 
   &.meeting {
     background-color: #c6d3ea9e;
+    border: 2px solid #c6d3ea9e;
+  }
+
+  &.current {
+    border: 2px solid #6699ffaa;
   }
 
   &:hover {

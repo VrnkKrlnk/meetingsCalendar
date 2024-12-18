@@ -60,6 +60,38 @@ function Calendar() {
     setCurrentDate(newDate);
   };
 
+  let data = [
+    {
+      date: "2024-12-4",
+      time: "14:00",
+      title: "Дело №12345",
+      location: "Зал 1, Суд Ленинского района",
+    },
+    {
+      date: "2024-12-20",
+      time: "10:00",
+      title: "Дело №54321",
+      location: "Зал 3, Суд Московского района",
+    },
+    {
+      date: "2025-01-18",
+      time: "12:00",
+      title: "Дело №58321",
+      location: "Зал 4, Суд Советского района",
+    },
+  ];
+
+  function fillData(day) {
+    return data.find((val) => {
+      let valDate = new Date(val.date);
+      return (
+        valDate.getFullYear() === currentDate.getFullYear() &&
+        valDate.getMonth() === currentDate.getMonth() &&
+        valDate.getDate() === day
+      );
+    });
+  }
+
   return (
     <div className="calendar">
       <div className="panel">
@@ -69,14 +101,22 @@ function Calendar() {
         }, ${currentDate.getFullYear()}`}</p>
         <button onClick={next}>&rang;</button>
       </div>
+
       <div className="header">
         {days.map((val) => {
           return <DayCell day={val} />;
         })}
       </div>
+
       <div className="cells">
         {daysInMonth.map((val) => {
-          return <DayCell day={val} month={currentDate.getMonth()} />;
+          return (
+            <DayCell
+              day={val}
+              month={currentDate.getMonth()}
+              data={fillData(val)}
+            />
+          );
         })}
       </div>
     </div>
