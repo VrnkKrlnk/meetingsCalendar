@@ -1,4 +1,4 @@
-.eventModal {
+.addModal {
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +41,7 @@
       margin-bottom: 40px;
     }
 
-    .editForm {
+    .addForm {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -79,33 +79,6 @@
 
       .save {
         background-color: #99ccff5d;
-      }
-    }
-
-    .meeting {
-      width: 100%;
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-bottom: 1px solid #1111117d;
-
-      .title {
-        font-weight: bolder;
-        font-style: italic;
-        margin-bottom: 10px;
-      }
-
-      .controls {
-        width: 60px;
-        display: flex;
-        justify-content: space-between;
-        align-self: flex-end;
-        svg {
-          width: 20px;
-          height: 20px;
-        }
       }
     }
   }

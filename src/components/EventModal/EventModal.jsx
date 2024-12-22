@@ -113,7 +113,7 @@ function EventModal({
         {isEditing ? (
           <div className="editForm">
             <label>
-              Название:
+              Название дела:
               <input
                 type="text"
                 name="title"

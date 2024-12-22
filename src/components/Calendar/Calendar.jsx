@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Calendar.scss";
 import DayCell from "../DayCell/DayCell.jsx";
 
-function Calendar() {
+function Calendar({ data, setData }) {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [data, setData] = useState([]);
 
   let dayInMonth = new Date(
     currentDate.getFullYear(),
@@ -60,21 +59,6 @@ function Calendar() {
     newDate.setMonth(currentDate.getMonth() - 1);
     setCurrentDate(newDate);
   };
-
-  const fetchData = async () => {
-    try {
-      let resp = await fetch("http://localhost:4000/meetings");
-      if (!resp.ok) {
-        throw new Error("Response was not ok");
-      }
-      let res = await resp.json();
-      setData(res);
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  useEffect(() => fetchData, []);
 
   return (
     <div className="calendar">
