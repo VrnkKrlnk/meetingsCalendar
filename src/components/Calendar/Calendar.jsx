@@ -63,7 +63,7 @@ function Calendar() {
 
   const fetchData = async () => {
     try {
-      let resp = await fetch("/events.json");
+      let resp = await fetch("http://localhost:4000/meetings");
       if (!resp.ok) {
         throw new Error("Response was not ok");
       }
@@ -75,17 +75,6 @@ function Calendar() {
   };
 
   useEffect(() => fetchData, []);
-
-  function fillData(day) {
-    return data.filter((val) => {
-      let valDate = new Date(val.date);
-      return (
-        valDate.getFullYear() === currentDate.getFullYear() &&
-        valDate.getMonth() === currentDate.getMonth() &&
-        valDate.getDate() === day
-      );
-    });
-  }
 
   return (
     <div className="calendar">
@@ -108,8 +97,9 @@ function Calendar() {
           return (
             <DayCell
               day={val}
-              month={currentDate.getMonth()}
-              data={fillData(val)}
+              currentDate={currentDate}
+              data={data}
+              setData={setData}
             />
           );
         })}
