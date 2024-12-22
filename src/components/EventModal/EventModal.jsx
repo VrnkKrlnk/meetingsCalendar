@@ -33,7 +33,7 @@ function EventModal({
     "декабря",
   ];
 
-  const handleEditClick = async (event) => {
+  const handleClick = async (event) => {
     setIsEditing(true);
     setEditedEvent({
       date: event.date,
@@ -49,7 +49,7 @@ function EventModal({
     setEditedEvent((prev) => ({ ...prev, [name]: value }));
   };
 
-  async function UpdateData() {
+  async function updateData() {
     try {
       let respUpdate = await fetch(
         `http://localhost:4000/meetings/${currentEventIndex}`,
@@ -67,6 +67,30 @@ function EventModal({
           let res = await resp.json();
           setData(res);
           alert("Данные обновлены");
+        }
+      }
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+  async function deleteData(event) {
+    try {
+      let resp = await fetch(`http://localhost:4000/meetings/${event.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      });
+
+      if (resp.ok) {
+        let resp = await fetch("http://localhost:4000/meetings");
+        if (resp.ok) {
+          let res = await resp.json();
+          setData(res);
+          alert("Данные удалены");
+        } else {
+          alert("Возникили проблемы при удалении");
         }
       }
     } catch (err) {
@@ -116,7 +140,7 @@ function EventModal({
               />
             </label>
             <div className="btns">
-              <button className="save" onClick={UpdateData}>
+              <button className="save" onClick={updateData}>
                 Сохранить
               </button>
               <button onClick={() => setIsEditing(false)}>Отменить</button>
@@ -129,10 +153,10 @@ function EventModal({
                   return (
                     <div className="meeting">
                       <div className="controls">
-                        <svg onClick={() => handleEditClick(val)}>
+                        <svg onClick={() => handleClick(val)}>
                           <use xlinkHref="/icons.svg#edit" />
                         </svg>
-                        <svg>
+                        <svg onClick={() => deleteData(val)}>
                           <use xlinkHref="/icons.svg#del" />
                         </svg>
                       </div>
